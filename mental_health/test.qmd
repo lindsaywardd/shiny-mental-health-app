@@ -1,0 +1,39 @@
+---
+title: "test"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(readr)
+mental_data <- read.csv("data/wrangled_dataset.csv")
+
+colnames(mental_data) <- c("Country", "Year", "Schizophrenia", "Bipolar Disorders",
+                           "Eating Disorders", "Anxiety Disorders", "Drug Use Disorders", 
+                           "Depression", "Alcohol Use Disorders")
+
+health_new <- mental_data %>% 
+  pivot_longer(
+    cols = !c(Country, Year),
+    names_to = "disorders", 
+    values_to = "percentages")
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
